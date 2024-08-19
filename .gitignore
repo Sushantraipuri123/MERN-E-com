@@ -1,3 +1,4 @@
+env
 # Logs
 logs
 *.log
@@ -22,3 +23,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+backend/.env
+.gitignore
