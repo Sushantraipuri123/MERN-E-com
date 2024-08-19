@@ -1,0 +1,40 @@
+/* Header.css */
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+.Urbanist {
+    font-family: 'Urbanist', sans-serif;
+}
+
+.custom-navbar {
+    font-family: 'Urbanist', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+    background-color: transparent;
+    padding: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.custom-navbar.scrolled {
+    background-color: #fff;
+}
+
+.custom-navbar .nav-link {
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.custom-navbar .nav-link:hover {
+    color: grey;
+}
+
+.navbar-collapse {
+    padding: 10px;
+}
+
+.navbar-toggler {
+    border: none;
+}

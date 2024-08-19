@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
         select: false,
     },
     phoneNumber:{
-        type: Number,
+        type: String,
         required: [true, "Please enter your Phone Number!"],
       },
       addresses:[
@@ -31,17 +31,14 @@ const userSchema = new mongoose.Schema({
           city:{
             type: String,
           },
-          address1:{
+          address:{
             type: String,
           },
-          address2:{
+          NerabyLandMark:{
             type: String,
           },
-          zipCode:{
+          Pincode:{
             type: Number,
-          },
-          addressType:{
-            type: String,
           },
         }
       ],
@@ -49,6 +46,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "user",
       },
+      gstNo:{
+        type:String
+      },
+      storeName:{
+        type:String
+      }
 },
     {
         timestamps: true

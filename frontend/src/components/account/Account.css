@@ -1,0 +1,14 @@
+.bg-hero-sections{
+      position: relative;
+    height: 30vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://t4.ftcdn.net/jpg/02/88/65/45/360_F_288654557_h0hiDv7cdEkdfKOIeF9wrSk4P6YH4ZMc.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

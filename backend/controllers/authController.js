@@ -5,7 +5,7 @@ module.exports = {
     // User registration logic
     createUser: async (req, res) => {
         try {
-            const { name, email, password, phoneNumber, role, addresses } = req.body;
+            const { name, email, password, phoneNumber, role, addresses,storeName,gstNo } = req.body;
                 //=== checking if user exists or not ===
             const exsistingUser = await db.findOne({email:req.body.email});
             if(exsistingUser){
@@ -23,6 +23,8 @@ module.exports = {
                 phoneNumber,
                 role: role || 'user',
                 addresses, 
+                storeName,
+                gstNo
             });
 
             res.status(200).json({
