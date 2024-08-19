@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 function Register() {
     const [isSeller, setIsSeller] = useState(false); // State to handle seller checkbox
-
+    const [loading, setLoading] = useState(false);
     const { register, handleSubmit, control, reset, formState: { errors } } = useForm({
         defaultValues: {
             addresses: [{ country: "", city: "", address: "", NearbyLandMark: "", Pincode: "", addressType: "" }],
@@ -21,6 +24,7 @@ function Register() {
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
+        setLoading(true);
         // Modify the role based on the checkbox
         if (isSeller) {
             data.role = "seller";
@@ -40,6 +44,9 @@ function Register() {
         .catch((err) => {
             console.error(err);
             alert(err);
+        })
+        .finally(() => {
+            setLoading(false); // Set loading to false after the request completes
         });
     }
 
@@ -196,8 +203,17 @@ function Register() {
                             {errors.storeName && <div className="invalid-feedback">{errors.storeName.message}</div>}
                         </div>
 
-                        <button type="submit" className="btn btn-primary w-100">Register</button>
+                        <Button type="submit" variant="outlined"  disabled={loading} // Disable button while loading
+                            startIcon={loading ? <CircularProgress size={20} /> : null} className="mt-3">{loading ? 'Registring...' : 'Register'}</Button>
                     </form>
+
+                    <div className="mt-5 mb-5">
+                  <Link to='/account/login'>
+                  <Button variant="contained" className="w-100 py-3">Already have account ? <span className=" ms-2"><u>Log in</u></span>
+                  </Button>
+                  </Link>
+
+                    </div>
                 </div>
             </div>
         </div>

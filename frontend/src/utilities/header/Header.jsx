@@ -47,8 +47,6 @@ function Header() {
           </NavDropdown>
         </Nav>
         <Nav className="ml-auto">
-          <Nav.Link  className='Urbanist' onClick={handleLinkClick}>Login</Nav.Link>
-          <Nav.Link href="#register" className='Urbanist' onClick={handleLinkClick}>Register</Nav.Link>
           <Nav.Link as={Link} to='/account' className='Urbanist' onClick={handleLinkClick}>Account</Nav.Link>
           <Nav.Link href="#cart" className='Urbanist' onClick={handleLinkClick}>Cart</Nav.Link>
         </Nav>
