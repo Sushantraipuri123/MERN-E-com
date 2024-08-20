@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import { useAuth } from "../../../store/Auth";
 
 function Register() {
     const [isSeller, setIsSeller] = useState(false); // State to handle seller checkbox
@@ -23,6 +23,7 @@ function Register() {
 
     const navigate = useNavigate();
 
+    const {storeTokenInLocalStorage} =  useAuth();
     const onSubmit = (data) => {
         setLoading(true);
         // Modify the role based on the checkbox
@@ -38,6 +39,7 @@ function Register() {
         .then((res) => {
             console.log('User created successfully:', res);
             alert('User created successfully!');
+            storeTokenInLocalStorage(res.data.token)
             reset(); // Reset the form
             navigate('/'); // Navigate to the home page
         })

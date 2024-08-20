@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Form } from "react-bootstrap";
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useAuth } from "../../../store/Auth";
 
 function Login() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false); // State to track loading
+    const { storeTokenInLocalStorage } = useAuth();
 
     const onSubmit = (data) => {
         setLoading(true); // Set loading to true when the request starts
@@ -21,8 +23,9 @@ function Login() {
         .then((res) => {
             console.log('User logged in successfully:', res);
             alert('Login successful!');
+            storeTokenInLocalStorage(res.data.token)
             reset();
-            navigate('/'); // Navigate to the home page
+            navigate('/account'); // Navigate to the home page
         })
         .catch((err) => {
             console.error(err);

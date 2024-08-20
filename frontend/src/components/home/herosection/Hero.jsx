@@ -1,10 +1,9 @@
-import react from 'react'
 import './Hero.css'
 function Hero(){
     return(
         <>
         <div className="container-fluid bg-hero ">
-       <div className="container pt-5 ">
+       <div className="container pt-lg-5 ">
         <div className="row align-items-center my-auto mt-5 pt-5">
             <div className="col-6 mt-5 pt-5">
                 <h4 className='subtitle'>In a World full of trends</h4>

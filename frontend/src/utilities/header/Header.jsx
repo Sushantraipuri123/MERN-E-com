@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Header.css'; // Import your custom CSS file
 import {Link} from 'react-router-dom'
+import { FaUserPlus } from "react-icons/fa6";
+import { useAuth } from '../../store/Auth';
+import { FaUserCheck } from "react-icons/fa6";
 function Header() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,9 +30,11 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const { isLoggedin } = useAuth();
+
   return (
     <Navbar expand="lg" className={` px-5 custom-navbar ${isScrolled ? 'scrolled' : ''}`}>
-      <Navbar.Brand href="#home" className='Urbanist ms-4'><strong>HYNA</strong></Navbar.Brand>
+      <Navbar.Brand as={Link} to='/' className='Urbanist ms-4'><strong>HYNA</strong></Navbar.Brand>
       <Navbar.Toggle 
         aria-controls="basic-navbar-nav"
         onClick={() => setIsNavbarOpen(!isNavbarOpen)}
@@ -47,7 +52,8 @@ function Header() {
           </NavDropdown>
         </Nav>
         <Nav className="ml-auto">
-          <Nav.Link as={Link} to='/account' className='Urbanist' onClick={handleLinkClick}>Account</Nav.Link>
+          <Nav.Link as={Link} to='/account' className='Urbanist nav-icon ' onClick={handleLinkClick}> {isLoggedin ?   <FaUserCheck /> : <FaUserPlus />} </Nav.Link>
+         
           <Nav.Link href="#cart" className='Urbanist' onClick={handleLinkClick}>Cart</Nav.Link>
         </Nav>
       </Navbar.Collapse>
