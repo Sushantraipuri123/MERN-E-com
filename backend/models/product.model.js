@@ -12,6 +12,7 @@ const productSchema = new mongoose.Schema({
     },
     productDiscountPrice:{
         type: Number,
+        default: 0,
     },
     productImage:{
         type: String,
@@ -33,25 +34,25 @@ const productSchema = new mongoose.Schema({
         type: String,
         // required: true
     },
-    reviews: [
-        {
-            rating: {
-                type: Number,
-                required: true,
-                min: 1,
-                max: 5, // Assuming a 5-star rating system
-            },
-            comment: {
-                type: String,
-                required: true,
-            },
-            reviewedBy: {
-                type: mongoose.Schema.ObjectId,
-                ref: "User",
-                required: true,
-            },
-        },
-    ],
+    // reviews: [
+    //     {
+    //         rating: {
+    //             type: Number,
+    //             // required: true,
+    //             min: 1,
+    //             max: 5, // Assuming a 5-star rating system
+    //         },
+    //         comment: {
+    //             type: String,
+    //             // required: true,
+    //         },
+    //         reviewedBy: {
+    //             type: mongoose.Schema.ObjectId,
+    //             ref: "User",
+    //             // required: true,
+    //         },
+    //     },
+    // ],
     createdBy:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

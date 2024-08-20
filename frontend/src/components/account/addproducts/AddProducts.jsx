@@ -22,7 +22,7 @@ const AddProduct = () => {
     try {
       const formData = new FormData();
       formData.append("productName", data.productName);
-      formData.append("productOriginalPrice", data.productOriginalPrice);
+      formData.append("productOrignalPrice", data.productOrignalPrice);
       formData.append("productDiscountPrice", data.productDiscountPrice);
       formData.append("productDescription", data.productDescription);
       formData.append("productQuantity", data.productQuantity);
@@ -77,20 +77,19 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="productOriginalPrice" className="form-label">
-            Original Price
-          </label>
-          <input
-            id="productOriginalPrice"
-            type="number"
-            {...register("productOriginalPrice", { required: "Original price is required" })}
-            className={`form-control ${errors.productOriginalPrice ? "is-invalid" : ""}`}
-          />
-          {errors.productOriginalPrice && (
-            <div className="invalid-feedback">{errors.productOriginalPrice.message}</div>
-          )}
-        </div>
-
+  <label htmlFor="productOrignalPrice" className="form-label">
+    Original Price
+  </label>
+  <input
+    id="productOrignalPrice"
+    type="number"
+    {...register("productOrignalPrice", { required: "Original price is required" })}
+    className={`form-control ${errors.productOrignalPrice ? "is-invalid" : ""}`}
+  />
+  {errors.productOrignalPrice && (
+    <div className="invalid-feedback">{errors.productOrignalPrice.message}</div>
+  )}
+</div>
         <div className="mb-3">
           <label htmlFor="productDiscountPrice" className="form-label">
             Discount Price
@@ -98,7 +97,7 @@ const AddProduct = () => {
           <input
             id="productDiscountPrice"
             type="number"
-            {...register("productDiscountPrice", { required: "Discount price is required" })}
+            {...register("productDiscountPrice")}
             className={`form-control ${errors.productDiscountPrice ? "is-invalid" : ""}`}
           />
           {errors.productDiscountPrice && (

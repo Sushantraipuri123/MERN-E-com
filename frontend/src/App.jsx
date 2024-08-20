@@ -10,6 +10,7 @@ import { useAuth } from './store/Auth';
 import Profile from './components/account/profile/Profile';
 import Logout from './components/account/logout/Logout';
 import AddProduct from './components/account/addproducts/AddProducts';
+import AllProducts from './components/products/allproducts/AllProducts';
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -39,6 +40,8 @@ function App() {
             />
             <Route path="logout" element={<Logout />} />
           </Route>
+          <Route path="products" element={<AllProducts/>} />
+
         </Route>
       </Routes>
     </Router>

@@ -43,6 +43,7 @@ function Header() {
         <Nav className="mx-auto">
           <Nav.Link as={Link} to='/' className='Urbanist' onClick={handleLinkClick}>Home</Nav.Link>
           <Nav.Link as={Link} to='/about' className='Urbanist' onClick={handleLinkClick}>About us</Nav.Link>
+          <Nav.Link as={Link} to='/products' className='Urbanist' onClick={handleLinkClick}>Products</Nav.Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1" className='Urbanist' onClick={handleLinkClick}>Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2" className='Urbanist' onClick={handleLinkClick}>Another action</NavDropdown.Item>
