@@ -5,6 +5,7 @@ import Rating from "@mui/material/Rating";
 import { Modal,  Overlay, Tooltip } from "react-bootstrap";
 import { FaShareNodes } from "react-icons/fa6";
 import { TbCoinRupeeFilled } from "react-icons/tb";
+import AddReview from "../AddReview";
 function SingleProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -16,6 +17,8 @@ function SingleProduct() {
   // states to be shared into other components
   const [selectedSize, setSelectedSize] = useState("M");
   const [count, setCount] = useState(1);
+
+  
 
   const containerRef = useRef(null);
   const imgRef = useRef(null);
@@ -334,6 +337,9 @@ function SingleProduct() {
         </div>
       </div>
 
+<div className="container">
+  <AddReview/>
+</div>
       {/* === modal body  */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

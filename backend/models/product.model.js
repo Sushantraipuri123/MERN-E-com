@@ -1,71 +1,74 @@
 var mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-    productName:{
+    productName: {
         type: String,
         required: true,
         trim: true,
     },
-    productOrignalPrice:{
+    productOrignalPrice: {
         type: Number,
         // required: true
     },
-    productDiscountPrice:{
+    productDiscountPrice: {
         type: Number,
         default: 0,
     },
-    productImage:{
+    productImage: {
         type: String,
         // required: true,
     },
-    productDescription:{
+    productDescription: {
         type: String,
         // required: true,
     },
-    productQuantity:{
+    productQuantity: {
         type: Number,
         // required: true
     },
-    category:{
-        type : String,
-        // required: true
-    },
-    productBrand:{
+    category: {
         type: String,
         // required: true
     },
-    // reviews: [
-    //     {
-    //         rating: {
-    //             type: Number,
-    //             // required: true,
-    //             min: 1,
-    //             max: 5, // Assuming a 5-star rating system
-    //         },
-    //         comment: {
-    //             type: String,
-    //             // required: true,
-    //         },
-    //         reviewedBy: {
-    //             type: mongoose.Schema.ObjectId,
-    //             ref: "User",
-    //             // required: true,
-    //         },
-    //     },
-    // ],
-    createdBy:{
+    productBrand: {
+        type: String,
+        // required: true
+    },
+    reviews: [
+        {
+            rating: {
+                type: Number,
+                // required: true,
+                min: 1,
+                max: 5, // Assuming a 5-star rating system
+            },
+            comment: {
+                type: String,
+                // required: true,
+            },
+            reviewedBy: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+            },
+            productId: {
+                type: mongoose.Schema.ObjectId,
+                ref: "Product",
+            },
+        },
+    ],
+    createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-},{timestamps: true});
+}, { timestamps: true });
 
 // Ensure creatorName and creatorId are populated from the User document
-productSchema.pre('save', async function(next) {
+productSchema.pre('save', async function (next) {
     if (this.isModified('createdBy')) {
         const user = await mongoose.model('User').findById(this.createdBy);
         if (user) {
             console.log('User Data:', user); // Log user data here
-            this.creatorName = user.username; 
+            this.creatorName = user.username;
             this.creatorId = user._id;
         }
     }

@@ -20,4 +20,6 @@ router.get("/allProducts", productController.allProducts);
 // get single product by id 
 router.get("/singleProduct/:id", productController.singleProduct);
 
+router.put('/addReview/:productId', productController.addReview);
+
 module.exports = router;

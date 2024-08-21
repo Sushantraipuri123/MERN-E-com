@@ -78,5 +78,45 @@ module.exports = {
             console.error("Product not fetched:", error);
             res.status(500).json({ message: 'Internal server error' });
         }
-    }
+    },
+
+    // add review in product
+     addReview : async (req, res) => {
+        try {
+          const { reviewedBy, rating, comment } = req.body;
+          const { productId } = req.params;
+      
+          const product = await db.findById(productId);
+      
+          if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+          }
+      
+          // Create the review object
+          const review = {
+            reviewedBy,
+            rating,
+            comment,
+            productId,
+          };
+      
+          // Add the review to the product's reviews array
+          product.reviews.push(review);
+      
+          // Calculate the new average rating
+          let avg = 0;
+          product.reviews.forEach((rev) => {
+            avg += rev.rating;
+          });
+          product.ratings = avg / product.reviews.length;
+      
+          // Save the updated product
+          await product.save();
+      
+          res.status(200).json({ message: 'Review added successfully' });
+        } catch (error) {
+          res.status(500).json({ message: 'An error occurred', error: error.message });
+        }
+      }     
+      
 }
