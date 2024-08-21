@@ -59,5 +59,24 @@ module.exports = {
         }
     },
 
-    // add reviews to products 
+    // get single product by ID
+
+    singleProduct : async (req, res) => {
+        try {
+            const product = await db.findById(req.params.id);
+            if (!product) {
+                return res.status(404).json({ message: 'Product not found' });
+            }
+            res.status(200).json({
+                success: true,
+                status: 200,
+                message: "Product fetched successfully",
+                body: product
+            });
+            
+        } catch (error) {
+            console.error("Product not fetched:", error);
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    }
 }

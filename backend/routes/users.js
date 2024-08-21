@@ -9,4 +9,7 @@ router.post('/loginUser',authControler.loginUser);
 
 router.get('/user',authMiddleware,authControler.user);
 
+router.get('/getsingleUser/:id',authControler.getsingleUser);
+
+
 module.exports = router;

@@ -15,7 +15,7 @@ function Login() {
 
     const onSubmit = (data) => {
         setLoading(true); // Set loading to true when the request starts
-        axios.post(`http://localhost:9001/users/loginUser`, data, {
+        axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}/users/loginUser`, data, {
             headers: {
                 'Content-Type': 'application/json',
             }

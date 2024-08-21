@@ -31,7 +31,7 @@ function Register() {
             data.role = "seller";
         }
         
-        axios.post(`http://localhost:9001/users/createUser`, data, {
+        axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}/users/createUser`, data, {
             headers: {
                 'Content-Type': 'application/json',
             }

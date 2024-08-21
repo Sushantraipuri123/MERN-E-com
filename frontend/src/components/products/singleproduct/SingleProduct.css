@@ -1,0 +1,135 @@
+.bg-single-product {
+    background-color: #e6e3e3;
+}
+
+.image-container {
+    width: 100%; /* Full width */
+    max-width: 623px; /* Max width of the container */
+    height: 623px; /* Auto height to scale with image */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 100px; /* Sticks the container 100px from the top of the viewport */
+  }
+  
+  .product-image {
+    width: 100%; /* Ensure the image scales properly */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+  }
+  
+
+.off{
+    font-size: 16px;
+    font-weight: 500;
+    color: #388e3c;
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px double currentColor;
+    background-color: currentColor;
+    display: inline-block;
+  }
+
+.size-btn{
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    border: 1px solid rgba(0, 0, 0, 10%);
+    height: 35px;
+    min-width: 48px;
+    display: flex;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+}
+.size-btn.selected {
+    border-color: #000000; /* Matching border color */
+  }
+
+  .cart-btn {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: transparent;
+    transition: background-color 0.7s, color 0.3s;
+}
+
+.cart-btn:hover {
+    color: #fff;
+    background-color: #222222;
+}
+
+.buy-btn {
+    color: #fff;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #222222;
+    transition: background-color 0.7s, color 0.3s;
+}
+
+.buy-btn:hover{
+    background-color: #475476;
+}
+
+.counter-btn{
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 2px solid rgba(0, 0, 0, 10%);
+    transition: border-color 0.4s, color 0.3s;
+}
+
+.counter-btn:hover{
+  border-color: #475476;
+}
+
+.btn-increment,
+.btn-decrement {
+    border: none; 
+    background: none; 
+    font-size: 24px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    padding: 10px; 
+    margin: 0;
+    line-height: 1;
+    color: inherit; 
+    text-align: center;
+    display: inline-flex;
+    align-items: center; 
+  }
+  
+  .btn-increment:disabled {
+    cursor: not-allowed;
+    color: #ccc;
+  }
+
+  .share{
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: transparent;
+    color: #475476;
+    cursor: pointer;
+    transition: background-color 0.7s, color 0.3s;
+  }

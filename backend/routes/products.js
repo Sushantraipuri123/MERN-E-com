@@ -17,4 +17,7 @@ router.post(
 
 router.get("/allProducts", productController.allProducts);
 
+// get single product by id 
+router.get("/singleProduct/:id", productController.singleProduct);
+
 module.exports = router;

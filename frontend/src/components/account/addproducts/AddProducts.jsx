@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../store/Auth";
 import { useState } from "react";
 
@@ -35,7 +34,7 @@ const AddProduct = () => {
       }
 
       const response = await fetch(
-        "http://localhost:9001/products/createProduct",
+        `${import.meta.env.VITE_APP_API_BASE_URL}/products/createProduct`,
         {
           method: "POST",
           body: formData,
@@ -54,6 +53,7 @@ const AddProduct = () => {
       }
     } catch (error) {
       alert("An error occurred while creating the product.");
+      console.log(error);
     }
   };
 

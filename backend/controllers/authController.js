@@ -119,4 +119,19 @@ module.exports = {
 
     }
   },
+
+  getsingleUser : async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const user = await db.findById(userId);
+        console.log(user);
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+        return res.status(200).json(user);
+    } catch (error) {
+        console.log("Error from get single user route:", error);
+        return res.status(500).json({ msg: "Internal Server Error" });
+    }
+  },
 };

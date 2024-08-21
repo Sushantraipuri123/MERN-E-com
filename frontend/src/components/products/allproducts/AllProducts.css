@@ -1,0 +1,62 @@
+.card {
+    background-color: transparent !important;
+    transition: background-color 0.7s ease, box-shadow 0.3s ease; /* Smooth transition for background color and box shadow */
+    overflow: hidden; /* Ensure content stays within the card */
+}
+
+.card:hover .card-body {
+    background-color: white !important;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.card:hover {
+    background-color: white !important;
+    box-shadow: 0 2px 39px #00000041;
+    transition: background-color 0.7s ease, box-shadow 0.3s ease; /* Smooth transition for background color and box shadow */
+}
+
+.card-img-top {
+    transition: transform 0.7s ease; /* Smooth transition for image scaling */
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1); /* Scale the image on hover */
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    width: 65px;
+    height: 65px;
+  background: linear-gradient(145deg, #6d8c62, #8fc17d, #4f6e3e);;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    z-index: 10;
+    font-size: 14px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .discount-badge:hover {
+    transform: scale(1.1);
+  }
+  
+
+  .orignal-Price{
+    font-size: 18px;
+    font-weight: 500;
+    color: #212121 !important;
+  }
+
+  .discounted-price{
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #878787;
+    
+  }
