@@ -1,0 +1,34 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+/* CircularText.css */
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .svg-img {
+    animation: rotate 10s linear infinite;
+    transform-origin: center;
+  }
+  
+  .bg-about{
+    background-color: #dfdfdf42;
+  }
+
+  .about-page-img{
+    height: auto;
+    width: auto;
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  .satisfy {
+    font-family: "Style Script", cursive;
+    text-decoration: underline
+    }
+
+  

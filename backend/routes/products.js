@@ -20,6 +20,11 @@ router.get("/allProducts", productController.allProducts);
 // get single product by id 
 router.get("/singleProduct/:id", productController.singleProduct);
 
+// add reviews to products 
 router.put('/addReview/:productId', productController.addReview);
+
+// get porducts by category
+
+router.get('/productsByCategory/:category', productController.productsByCategory);
 
 module.exports = router;

@@ -24,7 +24,7 @@ function Account() {
     <>
       <div className="container-fluid bg-hero-sections">
         <div>
-          <h6 className="text-center mt-5">HOME - ABOUT</h6>
+          <h6 className="text-center mt-5">HOME - Account</h6>
           <h1 className="text-center text-white">Account</h1>
         </div>
       </div>

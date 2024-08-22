@@ -12,40 +12,43 @@ import Logout from './components/account/logout/Logout';
 import AddProduct from './components/account/addproducts/AddProducts';
 import AllProducts from './components/products/allproducts/AllProducts';
 import SingleProduct from './components/products/singleproduct/SingelProduct';
+import ProductsByCategory from './components/products/categories/ProductByCategory';
 
 function App() {
   const { isLoggedin } = useAuth();
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="/account/*" element={<Account />}>
-            {/* If the user is logged in, show the Profile by default, otherwise redirect to Login */}
-            <Route index element={isLoggedin ? <Profile /> : <Navigate to="login" />} />
-            
-            {/* If the user is logged in, prevent access to login and register routes */}
-            <Route
-              path="login"
-              element={isLoggedin ? <Navigate to="/account" /> : <Login />}
-            />
-            <Route
-              path="register"
-              element={isLoggedin ? <Navigate to="/account" /> : <Register />}
-            />
-            <Route
-              path="add-products"
-              element={isLoggedin ? <AddProduct/> : <Navigate to="login" />}
-            />
-            <Route path="logout" element={<Logout />} />
-          </Route>
-          <Route path="products" element={<AllProducts/>} />
-          <Route path="products/:id" element={<SingleProduct/>} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        
+        <Route path="/account/*" element={<Account />}>
+          <Route index element={isLoggedin ? <Profile /> : <Navigate to="login" />} />
+          <Route
+            path="login"
+            element={isLoggedin ? <Navigate to="/account" /> : <Login />}
+          />
+          <Route
+            path="register"
+            element={isLoggedin ? <Navigate to="/account" /> : <Register />}
+          />
+          <Route
+            path="add-products"
+            element={isLoggedin ? <AddProduct/> : <Navigate to="login" />}
+          />
+          <Route path="logout" element={<Logout />} />
         </Route>
-      </Routes>
-    </Router>
+
+        <Route path="products" element={<AllProducts />} />
+        <Route path="products/:id" element={<SingleProduct />} />
+
+        {/* New Route for products by category */}
+        <Route path="product/:category" element={<ProductsByCategory/>} />
+      </Route>
+    </Routes>
+  </Router>
   );
 }
 

@@ -117,6 +117,27 @@ module.exports = {
         } catch (error) {
           res.status(500).json({ message: 'An error occurred', error: error.message });
         }
-      }     
+      },   
       
+      // get products by category
+      
+    productsByCategory : async (req, res) => {
+        try {
+            const { category } = req.params;
+            const products = await db.find({ category });
+            if (!products) {
+                return res.status(404).json({ message: 'Products not found for this category' });
+            }
+            res.status(200).json({
+                success: true,
+                status: 200,
+                message: "Products fetched successfully for this category",
+                body: products
+            });
+            
+        } catch (error) {
+            console.error("Products not fetched:", error);
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    },
 }

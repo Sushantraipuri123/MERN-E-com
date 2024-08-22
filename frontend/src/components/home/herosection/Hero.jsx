@@ -1,4 +1,5 @@
 import './Hero.css'
+import { Link } from 'react-router-dom'
 function Hero(){
     return(
         <>
@@ -11,9 +12,11 @@ function Hero(){
                     Fashion style fade is eternal
                 </h2>
                 <div className='pt-3'>
-                    <button className="hero-btn">
+                    <Link to='/products'>
+                    <button className="hero-btn" >
                         Collection
                     </button>
+                    </Link>
                 </div>
             </div>
         </div>
