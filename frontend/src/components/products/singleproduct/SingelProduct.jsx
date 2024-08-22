@@ -6,7 +6,7 @@ import { Modal, Overlay, Tooltip } from "react-bootstrap";
 import { FaShareNodes } from "react-icons/fa6";
 import { TbCoinRupeeFilled } from "react-icons/tb";
 import AddReview from "../AddReview";
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card } from "react-bootstrap";
 function SingleProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -16,7 +16,7 @@ function SingleProduct() {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [createdByUser, setCreatedByUser] = useState(null);
   // states to be shared into other components
-  const [selectedSize, setSelectedSize] = useState("M");
+  const [selectedSize, setSelectedSize] = useState("");
   const [count, setCount] = useState(1);
 
   const containerRef = useRef(null);
@@ -65,7 +65,9 @@ function SingleProduct() {
       try {
         // Fetch the product details
         const response = await fetch(
-          `${import.meta.env.VITE_APP_API_BASE_URL}/products/singleProduct/${id}`,
+          `${
+            import.meta.env.VITE_APP_API_BASE_URL
+          }/products/singleProduct/${id}`,
           {
             method: "GET",
             headers: {
@@ -85,7 +87,9 @@ function SingleProduct() {
         // Fetch the user details using createdBy ID
         const userId = data.body.createdBy;
         const userResponse = await fetch(
-          `${import.meta.env.VITE_APP_API_BASE_URL}/users/getsingleUser/${userId}`,
+          `${
+            import.meta.env.VITE_APP_API_BASE_URL
+          }/users/getsingleUser/${userId}`,
           {
             method: "GET",
             headers: {
@@ -145,7 +149,7 @@ function SingleProduct() {
     );
   }
 
-  console.log()
+  console.log();
 
   return (
     <>
@@ -182,8 +186,16 @@ function SingleProduct() {
               {product.productName}
             </h2>
             <p className="d-flex align-items-center">
-              <Rating name="read-only" value={product.ratings} readOnly className="me-2" /> /{" "}
-              <span className="text-muted ms-2">{product.reviews.length} ratings</span>
+              <Rating
+                name="read-only"
+                value={product.ratings}
+                readOnly
+                className="me-2"
+              />{" "}
+              /{" "}
+              <span className="text-muted ms-2">
+                {product.reviews.length} ratings
+              </span>
             </p>
             <div className="d-flex gap-4 my-3 align-items-center">
               {product.productDiscountPrice ? (
@@ -238,51 +250,94 @@ function SingleProduct() {
               <p>{product.productDescription}</p>
             </div>
 
-            <div className="d-flex justify-content-between my-4 pt-lg-3">
-              <div className="d-flex">
-                <h5>Size:</h5>{" "}
-                <span className="text-muted ms-2">
-                  {" "}
-                  {selectedSize ? selectedSize : "Select a size"}
-                </span>
-              </div>
-              <p className="d-flex gap-3">
-                <button
-                  className={`size-btn text-center ${
-                    selectedSize === "S" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSizeClick("S")}
-                >
-                  S
-                </button>
-                <button
-                  className={`size-btn text-center ${
-                    selectedSize === "M" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSizeClick("M")}
-                >
-                  M
-                </button>
-                <button
-                  className={`size-btn text-center ${
-                    selectedSize === "L" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSizeClick("L")}
-                >
-                  L
-                </button>
-                <button
-                  className={`size-btn text-center ${
-                    selectedSize === "XL" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSizeClick("XL")}
-                >
-                  XL
-                </button>
-              </p>
-            </div>
+            {product.category !== "electronics" &&
+              product.category !== "jewellery" &&
+              product.category !== "Accessories" && (
+                <div className="d-flex justify-content-between my-4 pt-lg-3">
+                  <div className="d-flex">
+                    <h5>Size:</h5>{" "}
+                    <span className="text-muted ms-2">
+                      {selectedSize ? selectedSize : "Select a size"}
+                    </span>
+                  </div>
+                  <p className="d-flex gap-3">
+                    <button
+                      className={`size-btn text-center ${
+                        selectedSize === "5" ? "selected" : ""
+                      }`}
+                      onClick={() =>
+                        handleSizeClick(
+                          product.category === "mens-shoes" ||
+                            product.category === "womens-shoes"
+                            ? "5"
+                            : "S"
+                        )
+                      }
+                    >
+                      {product.category === "mens-shoes" ||
+                      product.category === "womens-shoes"
+                        ? "5"
+                        : "S"}
+                    </button>
+                    <button
+                      className={`size-btn text-center ${
+                        selectedSize === "6" ? "selected" : ""
+                      }`}
+                      onClick={() =>
+                        handleSizeClick(
+                          product.category === "mens-shoes" ||
+                            product.category === "womens-shoes"
+                            ? "6"
+                            : "M"
+                        )
+                      }
+                    >
+                      {product.category === "mens-shoes" ||
+                      product.category === "womens-shoes"
+                        ? "6"
+                        : "M"}
+                    </button>
+                    <button
+                      className={`size-btn text-center ${
+                        selectedSize === "7" ? "selected" : ""
+                      }`}
+                      onClick={() =>
+                        handleSizeClick(
+                          product.category === "mens-shoes" ||
+                            product.category === "womens-shoes"
+                            ? "7"
+                            : "L"
+                        )
+                      }
+                    >
+                      {product.category === "mens-shoes" ||
+                      product.category === "womens-shoes"
+                        ? "7"
+                        : "L"}
+                    </button>
+                    <button
+                      className={`size-btn text-center ${
+                        selectedSize === "8" ? "selected" : ""
+                      }`}
+                      onClick={() =>
+                        handleSizeClick(
+                          product.category === "mens-shoes" ||
+                            product.category === "womens-shoes"
+                            ? "8"
+                            : "XL"
+                        )
+                      }
+                    >
+                      {product.category === "mens-shoes" ||
+                      product.category === "womens-shoes"
+                        ? "8"
+                        : "XL"}
+                    </button>
+                  </p>
+                </div>
+              )}
 
-            <div className="d-flex my-3">
+            <div className="d-flex my-4">
               <h5>Category:</h5>{" "}
               <span className="text-muted ms-2 text-capitalize">
                 {" "}
@@ -353,9 +408,9 @@ function SingleProduct() {
 
       <div className="container mb-3">
         <div className="d-flex justify-content-around align-items-end">
-            <div>
-                <h2 className="">Reviews</h2>
-            </div>
+          <div>
+            <h2 className="">Reviews</h2>
+          </div>
           <div className="pb-2">
             <AddReview />
           </div>
@@ -363,70 +418,72 @@ function SingleProduct() {
       </div>
 
       <div className="devider my-4">
-              <hr />
-            </div>
+        <hr />
+      </div>
 
-            <Container className="mt-5">
-            <Row>
-                {product.reviews && product.reviews.length > 0 ? (
-                    product.reviews.map((review) => {
-                        const reviewedBy = review.reviewedBy || 'Guest';
-                        const initial = reviewedBy.charAt(0).toUpperCase();
+      <Container className="mt-5">
+        <Row>
+          {product.reviews && product.reviews.length > 0 ? (
+            product.reviews.map((review) => {
+              const reviewedBy = review.reviewedBy || "Guest";
+              const initial = reviewedBy.charAt(0).toUpperCase();
 
-                        return (
-                            <Col md={4} className="mb-4" key={review._id}>
-                                <Card className="h-100">
-                                    <Card.Body className="d-flex flex-column">
-                                        <Card.Title>
-                                            <Rating value={review.rating} readOnly />
-                                        </Card.Title>
-                                        <div className="d-flex align-items-center mb-2">
-                                            <div
-                                                style={{
-                                                    width: '37px',
-                                                    height: '35px',
-                                                    backgroundColor: 'rgba(224, 224, 224, 0.5)',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    borderRadius: '4px',
-                                                    marginRight: '10px',
-                                                    fontWeight: 'bold',
-                                                    fontSize: '16px',
-                                                    color: '#333',
-                                                }}
-                                            >
-                                                {initial}
-                                            </div>
-                                            <p className="text-muted mb-0">{reviewedBy}</p>
-                                        </div>
-                                        <Card.Text
-                                            style={{
-                                                overflow: 'hidden',
-                                                textOverflow: 'ellipsis',
-                                                display: '-webkit-box',
-                                                WebkitLineClamp: 3,
-                                                WebkitBoxOrient: 'vertical',
-                                            }}
-                                        >
-                                            {review.comment}
-                                        </Card.Text>
-                                        <div className="mt-auto">
-                                            {/* Add any footer content here if needed */}
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        );
-                    })
-                ) : (
-                    <Col>
-                        <h3 className="text-center">No reviews yet.</h3>
-                        <h5 className="text-center mt-4 mb-5">Become the first person to add a review</h5>
-                    </Col>
-                )}
-            </Row>
-        </Container>
+              return (
+                <Col md={4} className="mb-4" key={review._id}>
+                  <Card className="h-100">
+                    <Card.Body className="d-flex flex-column">
+                      <Card.Title>
+                        <Rating value={review.rating} readOnly />
+                      </Card.Title>
+                      <div className="d-flex align-items-center mb-2">
+                        <div
+                          style={{
+                            width: "37px",
+                            height: "35px",
+                            backgroundColor: "rgba(224, 224, 224, 0.5)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            borderRadius: "4px",
+                            marginRight: "10px",
+                            fontWeight: "bold",
+                            fontSize: "16px",
+                            color: "#333",
+                          }}
+                        >
+                          {initial}
+                        </div>
+                        <p className="text-muted mb-0">{reviewedBy}</p>
+                      </div>
+                      <Card.Text
+                        style={{
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: "vertical",
+                        }}
+                      >
+                        {review.comment}
+                      </Card.Text>
+                      <div className="mt-auto">
+                        {/* Add any footer content here if needed */}
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            })
+          ) : (
+            <Col>
+              <h3 className="text-center">No reviews yet.</h3>
+              <h5 className="text-center mt-4 mb-5">
+                Become the first person to add a review
+              </h5>
+            </Col>
+          )}
+        </Row>
+      </Container>
 
       {/* === modal body  */}
       <Modal show={show} onHide={handleClose}>

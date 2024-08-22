@@ -135,19 +135,30 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="category" className="form-label">
-            Category
-          </label>
-          <input
-            id="category"
-            type="text"
-            {...register("category", { required: "Product category is required" })}
-            className={`form-control ${errors.category ? "is-invalid" : ""}`}
-          />
-          {errors.category && (
-            <div className="invalid-feedback">{errors.category.message}</div>
-          )}
-        </div>
+  <label htmlFor="category" className="form-label">
+    Category
+  </label>
+  <select
+    id="category"
+    {...register("category", { required: "Product category is required" })}
+    className={`form-control ${errors.category ? "is-invalid" : ""}`}
+  >
+    <option value="">Select a category</option>
+    <option value="jewellery">Jewellery</option>
+    <option value="electronics">Electronics</option>
+    <option value="mens-shoes">Men's Shoes</option>
+    <option value="womens-shoes">Women's Shoes</option>
+    <option value="mens-upperwares">Men's Upperwares</option>
+    <option value="womens-upperwares">Women's Upperwares</option>
+    <option value="mens-lowerwares">Men's Lowerwares</option>
+    <option value="womens-lowerwares">Women's Lowerwares</option>
+    <option value="Accessories">Accessories</option>
+  </select>
+  {errors.category && (
+    <div className="invalid-feedback">{errors.category.message}</div>
+  )}
+</div>
+
 
         <div className="mb-3">
           <label htmlFor="productBrand" className="form-label">
