@@ -2,10 +2,11 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "./SingleProduct.css";
 import Rating from "@mui/material/Rating";
-import { Modal,  Overlay, Tooltip } from "react-bootstrap";
+import { Modal, Overlay, Tooltip } from "react-bootstrap";
 import { FaShareNodes } from "react-icons/fa6";
 import { TbCoinRupeeFilled } from "react-icons/tb";
 import AddReview from "../AddReview";
+import { Container, Row, Col, Card } from 'react-bootstrap';
 function SingleProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -18,14 +19,13 @@ function SingleProduct() {
   const [selectedSize, setSelectedSize] = useState("M");
   const [count, setCount] = useState(1);
 
-  
-
   const containerRef = useRef(null);
   const imgRef = useRef(null);
 
   const handleMouseMove = (e) => {
     if (containerRef.current && imgRef.current) {
-      const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+      const { left, top, width, height } =
+        containerRef.current.getBoundingClientRect();
       const x = e.clientX - left;
       const y = e.clientY - top;
       const percentX = (x / width) * 100;
@@ -38,8 +38,8 @@ function SingleProduct() {
 
   const handleMouseLeave = () => {
     if (imgRef.current) {
-      imgRef.current.style.transform = 'scale(1)'; // Reset zoom
-      imgRef.current.style.transformOrigin = 'center center'; // Reset transform origin
+      imgRef.current.style.transform = "scale(1)"; // Reset zoom
+      imgRef.current.style.transformOrigin = "center center"; // Reset transform origin
     }
   };
 
@@ -65,9 +65,7 @@ function SingleProduct() {
       try {
         // Fetch the product details
         const response = await fetch(
-          `${
-            import.meta.env.VITE_APP_API_BASE_URL
-          }/products/singleProduct/${id}`,
+          `${import.meta.env.VITE_APP_API_BASE_URL}/products/singleProduct/${id}`,
           {
             method: "GET",
             headers: {
@@ -87,9 +85,7 @@ function SingleProduct() {
         // Fetch the user details using createdBy ID
         const userId = data.body.createdBy;
         const userResponse = await fetch(
-          `${
-            import.meta.env.VITE_APP_API_BASE_URL
-          }/users/getsingleUser/${userId}`,
+          `${import.meta.env.VITE_APP_API_BASE_URL}/users/getsingleUser/${userId}`,
           {
             method: "GET",
             headers: {
@@ -112,7 +108,12 @@ function SingleProduct() {
     };
 
     fetchProduct();
-  }, [id]);
+
+    // Polling every 30 seconds (30000 milliseconds)
+    const intervalId = setInterval(fetchProduct, 30000);
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  }, [id, product]);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(currentUrl).then(
@@ -144,6 +145,8 @@ function SingleProduct() {
     );
   }
 
+  console.log()
+
   return (
     <>
       <div className="container-fluid bg-single-product py-5">
@@ -157,19 +160,19 @@ function SingleProduct() {
       <div className="container mt-5 pt-lg-3 mb-5">
         <div className="row">
           <div className="col-md-6 mt-3">
-          <div
-      className="image-container border"
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      <img
-        src={product.productImage}
-        alt={product.productName}
-        className="product-image"
-        ref={imgRef}
-      />
-    </div>
+            <div
+              className="image-container border"
+              ref={containerRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <img
+                src={product.productImage}
+                alt={product.productName}
+                className="product-image"
+                ref={imgRef}
+              />
+            </div>
           </div>
           <div className="col-md-6 mt-3 px-lg-5">
             <p className="text-muted fw-bold text-uppercase">
@@ -179,8 +182,8 @@ function SingleProduct() {
               {product.productName}
             </h2>
             <p className="d-flex align-items-center">
-              <Rating name="read-only" value={3} readOnly className="me-2" /> /{" "}
-              <span className="text-muted ms-2">27 ratings</span>
+              <Rating name="read-only" value={product.ratings} readOnly className="me-2" /> /{" "}
+              <span className="text-muted ms-2">{product.reviews.length} ratings</span>
             </p>
             <div className="d-flex gap-4 my-3 align-items-center">
               {product.productDiscountPrice ? (
@@ -312,24 +315,35 @@ function SingleProduct() {
               </button>
             </div>
 
-<div className="my-4">
-<span onClick={handleShow} className="share"> <span className="me-2"><FaShareNodes /></span> Share</span>
-
-</div>
+            <div className="my-4">
+              <span onClick={handleShow} className="share">
+                {" "}
+                <span className="me-2">
+                  <FaShareNodes />
+                </span>{" "}
+                Share
+              </span>
+            </div>
             <div className="devider my-4">
               <hr />
             </div>
 
             <div className="my-4">
-                <div className="d-flex gap-3">
-                    <h5>Delivery: </h5>
-                     <p>Estimated delivery time: 5-7 days</p>
-                </div>
-                <div className="d-flex gap-3 my-2">
-                    <h5>Returns: </h5>
-                     <p>Within 45 days of purchase</p>
-                </div>
-                <p> <span className="text-success h4"><TbCoinRupeeFilled /></span> Cash on Delivery available</p>
+              <div className="d-flex gap-3">
+                <h5>Delivery: </h5>
+                <p>Estimated delivery time: 5-7 days</p>
+              </div>
+              <div className="d-flex gap-3 my-2">
+                <h5>Returns: </h5>
+                <p>Within 45 days of purchase</p>
+              </div>
+              <p>
+                {" "}
+                <span className="text-success h4">
+                  <TbCoinRupeeFilled />
+                </span>{" "}
+                Cash on Delivery available
+              </p>
             </div>
 
             <h3>Created by: {createdByUser?.name}</h3>
@@ -337,9 +351,83 @@ function SingleProduct() {
         </div>
       </div>
 
-<div className="container">
-  <AddReview/>
-</div>
+      <div className="container mb-3">
+        <div className="d-flex justify-content-around align-items-end">
+            <div>
+                <h2 className="">Reviews</h2>
+            </div>
+          <div className="pb-2">
+            <AddReview />
+          </div>
+        </div>
+      </div>
+
+      <div className="devider my-4">
+              <hr />
+            </div>
+
+            <Container className="mt-5">
+            <Row>
+                {product.reviews && product.reviews.length > 0 ? (
+                    product.reviews.map((review) => {
+                        const reviewedBy = review.reviewedBy || 'Guest';
+                        const initial = reviewedBy.charAt(0).toUpperCase();
+
+                        return (
+                            <Col md={4} className="mb-4" key={review._id}>
+                                <Card className="h-100">
+                                    <Card.Body className="d-flex flex-column">
+                                        <Card.Title>
+                                            <Rating value={review.rating} readOnly />
+                                        </Card.Title>
+                                        <div className="d-flex align-items-center mb-2">
+                                            <div
+                                                style={{
+                                                    width: '37px',
+                                                    height: '35px',
+                                                    backgroundColor: 'rgba(224, 224, 224, 0.5)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    borderRadius: '4px',
+                                                    marginRight: '10px',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '16px',
+                                                    color: '#333',
+                                                }}
+                                            >
+                                                {initial}
+                                            </div>
+                                            <p className="text-muted mb-0">{reviewedBy}</p>
+                                        </div>
+                                        <Card.Text
+                                            style={{
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 3,
+                                                WebkitBoxOrient: 'vertical',
+                                            }}
+                                        >
+                                            {review.comment}
+                                        </Card.Text>
+                                        <div className="mt-auto">
+                                            {/* Add any footer content here if needed */}
+                                        </div>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        );
+                    })
+                ) : (
+                    <Col>
+                        <h3 className="text-center">No reviews yet.</h3>
+                        <h5 className="text-center mt-4 mb-5">Become the first person to add a review</h5>
+                    </Col>
+                )}
+            </Row>
+        </Container>
+
       {/* === modal body  */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -347,27 +435,29 @@ function SingleProduct() {
         </Modal.Header>
         <Modal.Body>
           <div className="d-flex justify-content-between align-items-center overflow-hidden">
-         <div className="border p-3">
-         <span>{currentUrl}</span>
-         </div>
-            
+            <div className="border p-3">
+              <span>{currentUrl}</span>
+            </div>
           </div>
-          <button ref={target} onClick={copyToClipboard} className="mt-4 mb-3 px-3 counter-btn ">
-              Copy
-            </button>
-            <Overlay
-              target={target.current}
-              show={tooltipVisible}
-              placement="top"
-            >
-              {(props) => (
-                <Tooltip id="copy-tooltip" {...props}>
-                   Copied..!
-                </Tooltip>
-              )}
-            </Overlay>
+          <button
+            ref={target}
+            onClick={copyToClipboard}
+            className="mt-4 mb-3 px-3 counter-btn "
+          >
+            Copy
+          </button>
+          <Overlay
+            target={target.current}
+            show={tooltipVisible}
+            placement="top"
+          >
+            {(props) => (
+              <Tooltip id="copy-tooltip" {...props}>
+                Copied..!
+              </Tooltip>
+            )}
+          </Overlay>
         </Modal.Body>
-       
       </Modal>
     </>
   );
