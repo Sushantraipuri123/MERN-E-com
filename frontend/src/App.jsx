@@ -13,6 +13,10 @@ import AddProduct from './components/account/addproducts/AddProducts';
 import AllProducts from './components/products/allproducts/AllProducts';
 import SingleProduct from './components/products/singleproduct/SingelProduct';
 import ProductsByCategory from './components/products/categories/ProductByCategory';
+import MyProducts from './components/account/myProducts/MyProducts';
+import DeliveredOrders from './components/account/deliveredorders/DeliveredOrders';
+import RecivedOrders from './components/account/recivedOrders/RecivedOrders';
+import MyOrders from './components/account/myOrders/MyOrders';
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -37,6 +41,22 @@ function App() {
           <Route
             path="add-products"
             element={isLoggedin ? <AddProduct/> : <Navigate to="login" />}
+          />
+           <Route
+            path="my-products"
+            element={isLoggedin ? <MyProducts/> : <Navigate to="login" />}
+          />
+             <Route
+            path="delivered-orders"
+            element={isLoggedin ? <DeliveredOrders/> : <Navigate to="login" />}
+          />
+            <Route
+            path="recived-orders"
+            element={isLoggedin ? <RecivedOrders/> : <Navigate to="login" />}
+          />
+              <Route
+            path="my-orders"
+            element={isLoggedin ? <MyOrders/> : <Navigate to="login" />}
           />
           <Route path="logout" element={<Logout />} />
         </Route>

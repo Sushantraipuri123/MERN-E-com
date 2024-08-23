@@ -66,7 +66,7 @@ const Brand = () => {
   return (
     <div className="brand">
       <div className="brand-heading">
-        <h3 className="brand_h1 Urbanist">What Our Slient Says</h3>
+        <h1 className=" Urbanist">What Our Client Says</h1>
       </div>
       <div className="car_brand">
         <Slider {...settings}>
@@ -76,7 +76,7 @@ const Brand = () => {
                 {/* Add any content or images for the slide here */}
               </div>
               <div className="testimonial-content p-5">
-                <h2 className=" Urbanist mx-3">{item.quote}</h2>
+                <h3 className=" Urbanist mx-3">{item.quote}</h3>
                 <h4 className="Urbanist mt-4 text-muted">- {item.author}</h4>
               </div>
             </div>
