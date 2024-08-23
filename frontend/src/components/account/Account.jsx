@@ -32,12 +32,14 @@ function Account() {
         <div className="container mt-5 pt-lg-3 mb-5">
           {isLoggedin ? ( // Check if the user is logged in
             <>
-              <p className="display-6 text-center text-muted Urbanist">
+             <div className="d-flex gap-3 flex-wrap justify-content-center align-items-end">
+             <p className="display-6 text-center text-muted Urbanist">
                 Welcome
               </p>
               <h2 className="text-capitalize text-center Urbanist display-4">
-                {userdata?.name}
+                {userdata?.name}...!  
               </h2>
+             </div>
               <div className="d-flex justify-content-between mt-5">
                 <div>
                   <PopupState variant="popover" popupId="demo-popup-menu">

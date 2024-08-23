@@ -27,4 +27,8 @@ router.put('/addReview/:productId', productController.addReview);
 
 router.get('/productsByCategory/:category', productController.productsByCategory);
 
+// get product by created by 
+
+router.get('/myProducts/:createdBy', productController.myProducts);
+
 module.exports = router;

@@ -140,4 +140,26 @@ module.exports = {
             res.status(500).json({ message: 'Internal server error' });
         }
     },
+
+    // get products by createdBy 
+    
+    myProducts : async (req, res) => {
+        try {
+            const { createdBy } = req.params;
+            const products = await db.find({ createdBy });
+            if (!products) {
+                return res.status(404).json({ message: 'Products not found by this user' });
+            }
+            res.status(200).json({
+                success: true,
+                status: 200,
+                message: "Products fetched successfully by this user",
+                body: products
+            });
+            
+        } catch (error) {
+            console.error("Products not fetched:", error);
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    },
 }
