@@ -1,7 +1,8 @@
 import  { useEffect, useState } from "react";
 import { useAuth } from "../../../store/Auth";
-import { Table, Container, Button, Image } from "react-bootstrap";
+import { Table, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 function MyProducts() {
   const { user } = useAuth();
@@ -11,15 +12,11 @@ function MyProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log("created by id", createdBy);
-
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `${
-            import.meta.env.VITE_APP_API_BASE_URL
-          }/products/myProducts/${createdBy}`,
+          `${import.meta.env.VITE_APP_API_BASE_URL}/products/myProducts/${createdBy}`,
           {
             method: "GET",
             headers: {
@@ -48,9 +45,28 @@ function MyProducts() {
     return () => clearInterval(intervalId);
   }, [createdBy]);
 
-  const handleDelete = (productId) => {
-    // Logic to delete the product by productId
-    console.log(`Deleting product with ID: ${productId}`);
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_APP_API_BASE_URL}/products/deleteProduct/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      // Refresh the product list or handle UI updates here
+      alert("Product deleted successfully!");
+    } catch (error) {
+      console.error("Fetch error: ", error);
+      alert("Failed to delete product.");
+    }
   };
 
   const truncateText = (text) => {
@@ -61,7 +77,7 @@ function MyProducts() {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 mb-5">
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -118,18 +134,19 @@ function MyProducts() {
                       ? `₹${product.productDiscountPrice}`
                       : "N/A"}
                   </td>
-                  <td className="align-middle">
+                  <td className="align-middle  ">
                     <Button
                       as={Link}
                       to={`/edit-product/${product._id}`}
-                      variant="warning"
-                      className="me-2"
+                      variant="outlined"
+                      className="me-3  text-decoration-none"
                     >
                       Edit
                     </Button>
                     <Button
-                      variant="danger"
+                      variant="contained"
                       onClick={() => handleDelete(product._id)}
+                      className="mt-2"
                     >
                       Delete
                     </Button>

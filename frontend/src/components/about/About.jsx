@@ -80,7 +80,7 @@ const About = () => {
            <div>
            <h2 className="text-center Urbanist mb-3">Sushant Raipuri </h2>
             <p className="text-muted text-center Urbanist">
-            At <strong>Founder</strong>, of this multi-vendor e-commerce store, is a skilled MERN Stack Developer dedicated to creating a seamless shopping experience and advancing his web development expertise.
+            A <strong>Founder</strong>, of this multi-vendor e-commerce store, is a skilled MERN Stack Developer dedicated to creating a seamless shopping experience and advancing his web development expertise.
             </p>
             <h1 className="satisfy mt-3 text-end"> Sushant</h1>
            </div>

@@ -31,4 +31,13 @@ router.get('/productsByCategory/:category', productController.productsByCategory
 
 router.get('/myProducts/:createdBy', productController.myProducts);
 
+// delete products 
+
+router.delete('/deleteProduct/:id', productController.deleteProduct);
+
+// update products
+
+router.post('/updateProduct/:id', productController.updateProduct);
+
+
 module.exports = router;

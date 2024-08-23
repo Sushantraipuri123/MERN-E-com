@@ -7,8 +7,10 @@ import { FaShareNodes } from "react-icons/fa6";
 import { TbCoinRupeeFilled } from "react-icons/tb";
 import AddReview from "../AddReview";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import { useAuth } from "../../../store/Auth";
 function SingleProduct() {
   const { id } = useParams();
+  const { addToCart } = useAuth();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -53,6 +55,10 @@ function SingleProduct() {
 
   const handleSizeClick = (size) => {
     setSelectedSize(size);
+  };
+
+  const handleAddToCart = () => {
+    addToCart(product); // Add product to cart
   };
   //   current url
   const currentUrl = window.location.href;
@@ -364,7 +370,7 @@ function SingleProduct() {
                   </button>
                 </div>
               </span>
-              <button className="cart-btn border p-4">Add to cart</button>
+              <button className="cart-btn border p-4" onClick={handleAddToCart}>Add to cart</button>
               <button className="buy-btn border text-uppercase p-4">
                 Buy it Now
               </button>

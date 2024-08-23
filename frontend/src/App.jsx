@@ -17,6 +17,8 @@ import MyProducts from './components/account/myProducts/MyProducts';
 import DeliveredOrders from './components/account/deliveredorders/DeliveredOrders';
 import RecivedOrders from './components/account/recivedOrders/RecivedOrders';
 import MyOrders from './components/account/myOrders/MyOrders';
+import EditProduct from './components/account/myProducts/EditProduct';
+import Carts from './components/carts/Carts';
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -66,6 +68,8 @@ function App() {
 
         {/* New Route for products by category */}
         <Route path="product/:category" element={<ProductsByCategory/>} />
+        <Route path="edit-product/:id" element={<EditProduct/>} />
+        <Route path="cart" element={<Carts/>} />
       </Route>
     </Routes>
   </Router>
