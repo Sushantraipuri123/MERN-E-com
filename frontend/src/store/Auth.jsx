@@ -3,41 +3,58 @@ import { createContext, useContext, useState, useEffect } from "react";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem("cart")) || []);
+  const [token, setToken] = useState(() => localStorage.getItem("token") || ""); // geting token from localStorage
+  const [user, setUser] = useState(null); // Store the user object
 
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      const updatedCart = [...prevCart, product];
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return updatedCart;
-    });
+  // setting the token in localStorage
+  const storeTokenInLocalStorage = (serverToken) => {
+    localStorage.setItem("token", serverToken);
+    setToken(serverToken);
+  };
+  // checking weather the user is loged in or n ot
+  const isLoggedin = !!token;
+
+  // removing the token when the user logs out
+  const LogoutUser = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    setUser(null); // Clear user data on logout
   };
 
-  const removeFromCart = (productId) => {
-    setCart((prevCart) => {
-      console.log("Cart before removing:", prevCart);  // Debugging statement
-      const updatedCart = prevCart.filter((item) => item.id !== productId);
-      console.log("Updated cart:", updatedCart);  // Debugging statement
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return updatedCart;
-    });
-    
-  };
-  
-  
+  // getting user information
+  useEffect(() => {
+    if (token) {
+      userAuthentication();
+    } else {
+      setUser(null); // Ensure user data is cleared if no token
+    }
+  }, [token]);
 
-  const updateCartItemQuantity = (productId, newQuantity) => {
-    setCart((prevCart) => {
-      const updatedCart = prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return updatedCart;
-    });
+  const userAuthentication = async () => {
+    try {
+      const response = await fetch(`http://localhost:9001/users/user`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to authenticate user");
+      } 
+
+      const userData = await response.json();
+      console.log("User data:", userData);
+      setUser(userData); // Store the user data (including ID)
+    } catch (error) {
+      console.log("Error fetching user data:", error);
+      setUser(null); // Clear user data if there’s an error
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ cart, addToCart, removeFromCart, updateCartItemQuantity }}>
+    <AuthContext.Provider
+      value={{ storeTokenInLocalStorage, isLoggedin, LogoutUser, user  }}
+    >
       {children}
     </AuthContext.Provider>
   );

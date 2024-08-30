@@ -8,6 +8,9 @@ import { TbCoinRupeeFilled } from "react-icons/tb";
 import AddReview from "../AddReview";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { useAuth } from "../../../store/Auth";
+import Spinner from "react-bootstrap/Spinner"; // Assuming you're using React Bootstrap for the spinner
+import { useNavigate } from "react-router-dom";
+
 function SingleProduct() {
   const { id } = useParams();
   const { addToCart } = useAuth();
@@ -23,6 +26,9 @@ function SingleProduct() {
 
   const containerRef = useRef(null);
   const imgRef = useRef(null);
+
+  
+
 
   const handleMouseMove = (e) => {
     if (containerRef.current && imgRef.current) {
@@ -58,8 +64,19 @@ function SingleProduct() {
   };
 
   const handleAddToCart = () => {
-    addToCart(product); // Add product to cart
+    addToCart(product);
+    alert("one item added to cart"); // Add product to cart
   };
+  // handle buy now
+
+  const navigate = useNavigate();
+
+  const handleBuyNow = () => {
+    navigate(`/check-out/${product._id}`, {
+      state: { selectedSize, count },
+    });
+  };
+  
   //   current url
   const currentUrl = window.location.href;
 
@@ -119,10 +136,9 @@ function SingleProduct() {
 
     fetchProduct();
 
-    // Polling every 30 seconds (30000 milliseconds)
     const intervalId = setInterval(fetchProduct, 30000);
 
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, [id, product]);
 
   const copyToClipboard = () => {
@@ -138,7 +154,11 @@ function SingleProduct() {
   };
 
   if (loading) {
-    return <div className="container mt-5 mb-5 text-center">Loading...</div>;
+    return (
+      <div className="container mt-5 mb-5 text-center">
+        <Spinner />
+      </div>
+    );
   }
 
   if (error) {
@@ -370,10 +390,23 @@ function SingleProduct() {
                   </button>
                 </div>
               </span>
-              <button className="cart-btn border p-4" onClick={handleAddToCart}>Add to cart</button>
-              <button className="buy-btn border text-uppercase p-4">
-                Buy it Now
+              <button className="cart-btn border p-4" onClick={handleAddToCart}>
+                Add to cart
               </button>
+              {/* <Link
+  to={{
+    pathname: `/check-out/${product._id}`,
+    state: { selectedSize: "M", count: 2 },
+  }}
+  className="buy-btn border text-uppercase p-4 text-decoration-none"
+>
+  Buy it Now
+</Link> */}
+
+<button onClick={handleBuyNow} className="buy-btn border text-uppercase p-4 text-decoration-none">
+      Buy it Now
+    </button>
+
             </div>
 
             <div className="my-4">

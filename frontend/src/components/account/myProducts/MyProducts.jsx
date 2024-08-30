@@ -43,7 +43,7 @@ function MyProducts() {
     const intervalId = setInterval(fetchProduct, 30000);
 
     return () => clearInterval(intervalId);
-  }, [createdBy]);
+  }, [createdBy, products]);
 
   const handleDelete = async (id) => {
     try {
