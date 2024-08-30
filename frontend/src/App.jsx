@@ -54,7 +54,7 @@ function App() {
             element={isLoggedin ? <DeliveredOrders/> : <Navigate to="login" />}
           />
             <Route
-            path="recived-orders"
+            path="received-orders"
             element={isLoggedin ? <RecivedOrders/> : <Navigate to="login" />}
           />
               <Route

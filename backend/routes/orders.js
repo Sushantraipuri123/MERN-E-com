@@ -9,4 +9,7 @@ router.post('/createOrder', orderController.createOrder);
 // Route to  get my orders
 router.get('/my-orders/:id', orderController.myOrders);
 
+router.get('/recived-orders/:id', orderController.recivedOrders);
+
+
 module.exports = router;

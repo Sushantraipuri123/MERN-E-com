@@ -80,7 +80,6 @@ function MyOrders() {
         }}
       >
         <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
         </Spinner>
       </div>
     );
@@ -149,7 +148,7 @@ function MyOrders() {
             </tbody>
           </Table>
       ) : (
-        <p>No orders found.</p>
+        <h4 className="Urbanist text-center">No orders found.....!</h4>
       )}
     </div>
   );

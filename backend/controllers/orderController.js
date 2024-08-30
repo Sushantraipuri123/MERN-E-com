@@ -52,7 +52,28 @@ module.exports = {
             console.error("Error fetching orders:", error);
             res.status(500).json({ message: error.message });
         }
-    }
+    },
 
+    // seller of product 
+    recivedOrders: async (req, res) => {
+        try {
+            const orders = await db.find({ seller: req.params.id });
+            res.status(200).json(orders);
+        } catch (error) {
+            console.error("Error fetching orders:", error);
+            res.status(500).json({ message: error.message });
+        }
+    },
+
+    // delivered products 
+    deliveredOrders: async (req, res) => {
+        try {
+            const orders = await db.find({ orderStatus: 'delivered' });
+            res.status(200).json(orders);
+        } catch (error) {
+            console.error("Error fetching orders:", error);
+            res.status(500).json({ message: error.message });
+        }
+    }
 
 };
