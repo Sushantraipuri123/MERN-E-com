@@ -20,6 +20,7 @@ import MyOrders from './components/account/myOrders/MyOrders';
 import EditProduct from './components/account/myProducts/EditProduct';
 import Carts from './components/carts/Carts';
 import CheckOut from './components/checkout/CheckOut';
+import SeahrchedProducts from './components/searchbar/SeahrchedProducts';
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -72,7 +73,8 @@ function App() {
         <Route path="edit-product/:id" element={<EditProduct/>} />
         <Route path="cart" element={<Carts/>} />
 
-        <Route path="/check-out/:id" element={<CheckOut />} />
+        <Route path="/check-out/:id" element={<CheckOut/>} />
+        <Route path="/searched-products" element={<SeahrchedProducts/>} />
         </Route>
     </Routes>
   </Router>

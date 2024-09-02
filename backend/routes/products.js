@@ -39,5 +39,7 @@ router.delete('/deleteProduct/:id', productController.deleteProduct);
 
 router.post('/updateProduct/:id', productController.updateProduct);
 
+// Define the route for searching products
+router.get('/search', productController.searchProducts);
 
 module.exports = router;

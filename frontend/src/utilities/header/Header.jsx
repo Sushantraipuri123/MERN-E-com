@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 import { FaUserPlus } from "react-icons/fa6";
 import { useAuth } from '../../store/Auth';
 import { FaUserCheck } from "react-icons/fa6";
+import Search from '../../components/searchbar/Search';
 function Header() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,7 +53,10 @@ function Header() {
             <NavDropdown.Item href="#action/3.4" className='Urbanist' onClick={handleLinkClick}>Separated link</NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        <Nav className="ml-auto">
+        <Nav className="ml-auto align-items-start">
+        <Nav.Link  className='Urbanist nav-icon' >
+          <Search/>
+        </Nav.Link>
           <Nav.Link as={Link} to='/account' className='Urbanist nav-icon ' onClick={handleLinkClick}> {isLoggedin ?   <FaUserCheck /> : <FaUserPlus />} </Nav.Link>
          
           <Nav.Link as={Link} to="cart" className='Urbanist' onClick={handleLinkClick}>Cart</Nav.Link>

@@ -1,5 +1,6 @@
 const db = require('../models/product.model');
 const uploadFile = require('../cloudinary/Cloudinary');
+const { ObjectId } = require('mongodb');
 
 module.exports = {
     createProduct: async (req, res) => {
@@ -196,4 +197,52 @@ module.exports = {
             res.status(500).json({ message: 'Internal server error' });
         }
     },
+
+    // search anythings in the frontend
+    searchProducts: async (req, res) => {
+        try {
+            const { searchQuery } = req.query;
+
+            if (!searchQuery) {
+                return res.status(400).json({ message: 'Search query is required' });
+            }
+
+            // Convert the search query to a regular expression for partial matching
+            const searchRegex = new RegExp(searchQuery, 'i'); // 'i' for case-insensitive search
+
+            // Create a query object
+            let query = {
+                $or: [
+                    { productName: { $regex: searchRegex } },        // Search by name
+                    { productBrand: { $regex: searchRegex } },       // Search by brand
+                    { productDescription: { $regex: searchRegex } }, // Search by description
+                    { category: { $regex: searchRegex } },           // Search by category
+                ]
+            };
+
+            // Check if the searchQuery can be an ObjectId
+            if (ObjectId.isValid(searchQuery)) {
+                query.$or.push({ _id: new ObjectId(searchQuery) }); // Search by exact product ID
+            }
+
+            // Perform the search
+            const products = await db.find(query);
+
+            if (!products || products.length === 0) {
+                return res.status(404).json({ message: 'No products found for this search query' });
+            }
+
+            res.status(200).json({
+                success: true,
+                status: 200,
+                message: "Products fetched successfully for this search query",
+                body: products,
+            });
+        } catch (error) {
+            console.error("Products not fetched:", error);
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    },
+    
+    
 }

@@ -74,6 +74,33 @@ module.exports = {
             console.error("Error fetching orders:", error);
             res.status(500).json({ message: error.message });
         }
+    },
+
+    // cancell order 
+
+    cancelOrder : async (req,res)=>{
+        try {
+            const { orderId } = req.params; // Get orderId from the route parameters
+        
+            // Find the order by ID and update the status to "cancelled"
+            const updatedOrder = await db.findByIdAndUpdate(
+              orderId,
+              { orderStatus: 'cancelled' },
+              { new: true } // Return the updated document
+            );
+        
+            if (!updatedOrder) {
+              return res.status(404).json({ message: 'Order not found' });
+            }
+        
+            res.status(200).json({
+              message: 'Order cancelled successfully',
+              order: updatedOrder,
+            });
+          } catch (error) {
+            res.status(500).json({ message: 'Server error', error: error.message });
+          }
     }
+   
 
 };

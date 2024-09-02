@@ -11,5 +11,7 @@ router.get('/my-orders/:id', orderController.myOrders);
 
 router.get('/recived-orders/:id', orderController.recivedOrders);
 
+// Route to cancel an order
+router.put('/cancel-order/:orderId', orderController.cancelOrder);
 
 module.exports = router;
