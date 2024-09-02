@@ -14,4 +14,7 @@ router.get('/recived-orders/:id', orderController.recivedOrders);
 // Route to cancel an order
 router.put('/cancel-order/:orderId', orderController.cancelOrder);
 
+// Route to get order information by orderId
+router.get('/getOrderById/:id', orderController.getOrderById);
+
 module.exports = router;

@@ -3,6 +3,7 @@ import { useAuth } from "../../../store/Auth";
 import { Spinner, Table } from "react-bootstrap";
 import Button from "@mui/material/Button"; // Import MUI Button
 import { styled } from "@mui/material/styles";
+import { Link } from 'react-router-dom';
 
 function MyOrders() {
   const { user } = useAuth();
@@ -116,6 +117,8 @@ function MyOrders() {
     }
   };
 
+  // console.log(orders, "cgjhjhkvs;dflhalshdjasdjkfhasidfiaj;fklhasd;klhf;lakhsfahfhskdjh;")
+
   if (loading) {
     return (
       <div
@@ -193,14 +196,19 @@ function MyOrders() {
                 </td>
 
                 <td className="align-middle">
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    onClick={() => console.log(`View order: ${order._id}`)}
-                    className="me-3 mt-1 text-decoration-none"
+                  <Link
+                    to={`/my-orders/${order._id}`}
+                    className="text-decoration-none text-primary" // Add appropriate classes
                   >
-                    View
-                  </Button>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      onClick={() => console.log(`View order: ${order._id}`)}
+                      className="me-3 mt-1 text-decoration-none"
+                    >
+                      View
+                    </Button>
+                  </Link>
                   {order.orderStatus !== "cancelled" &&
                     order.orderStatus !== "delivered" && (
                       <CancelButton

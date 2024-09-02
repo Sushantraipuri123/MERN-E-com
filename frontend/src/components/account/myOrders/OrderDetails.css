@@ -1,0 +1,14 @@
+.custom-stepper .MuiStepConnector-line {
+    height: 4px;
+    border: none;
+    background-color: #e0e0e0; /* Color of the inactive part of the line */
+  }
+  
+  .custom-stepper .MuiStepConnector-active .MuiStepConnector-line {
+    background-color: #007bff; /* Color of the active part of the line */
+  }
+  
+  .custom-stepper .MuiStepConnector-completed .MuiStepConnector-line {
+    background-color: #007bff; /* Color of the completed part of the line */
+  }
+  

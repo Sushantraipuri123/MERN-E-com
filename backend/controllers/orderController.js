@@ -100,7 +100,36 @@ module.exports = {
           } catch (error) {
             res.status(500).json({ message: 'Server error', error: error.message });
           }
+    },
+
+    // get order information by orderID
+    getOrderById: async (req, res) => {
+        try {
+            const { id } = req.params; // Get the ID from the URL parameters
+            
+            // Find the order by ID
+            const order = await db.findOne({ _id: id });
+            
+            if (order) {
+                res.status(200).json({
+                    success: true,
+                    status: 200,
+                    message: "Order found",
+                    body: order
+                });
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "Order not found"
+                });
+            }
+        } catch (error) {
+            console.error("Error fetching order:", error);
+            res.status(500).json({ message: 'Server error', error: error.message });
+        }
     }
-   
+    
+    
+    
 
 };
