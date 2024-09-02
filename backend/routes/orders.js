@@ -17,4 +17,7 @@ router.put('/cancel-order/:orderId', orderController.cancelOrder);
 // Route to get order information by orderId
 router.get('/getOrderById/:id', orderController.getOrderById);
 
+router.put('/ship-order/:orderId', orderController.shipOrder);
+
+
 module.exports = router;

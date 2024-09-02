@@ -27,6 +27,7 @@ import Carts from "./components/carts/Carts";
 import CheckOut from "./components/checkout/CheckOut";
 import SeahrchedProducts from "./components/searchbar/SeahrchedProducts";
 import OrderDetails from "./components/account/myOrders/OrderDetails";
+import RecivedOrdersDetails from "./components/account/recivedOrders/RecivedOrdersDetails";
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -88,6 +89,7 @@ function App() {
           <Route path="/searched-products" element={<SeahrchedProducts />} />
           {/* order details routes  */}
           <Route path="/my-orders/:id" element={<OrderDetails />} />
+          <Route path="/recived-orders/:id" element={<RecivedOrdersDetails/>} />
         </Route>
       </Routes>
     </Router>

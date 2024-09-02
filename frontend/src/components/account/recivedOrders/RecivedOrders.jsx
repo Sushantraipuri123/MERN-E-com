@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../../store/Auth";
 import { Spinner, Table } from "react-bootstrap";
 import Button from "@mui/material/Button"; 
+import { Link } from 'react-router-dom';
 
 function RevivedOrders() {
   const { user } = useAuth();
@@ -123,6 +124,10 @@ function RevivedOrders() {
                   <td className="align-middle">{order.selectedSize}</td>
                   <td className="align-middle">{order.orderStatus}</td>
                   <td className="align-middle">
+                  <Link
+                    to={`/recived-orders/${order._id}`}
+                    className="text-decoration-none text-primary" // Add appropriate classes
+                  >
                     <Button
                       variant="outlined"
                       color="primary"
@@ -131,7 +136,7 @@ function RevivedOrders() {
                     >
                       Details
                     </Button>
-                
+                </Link>
                   </td>
                 </tr>
               ))}

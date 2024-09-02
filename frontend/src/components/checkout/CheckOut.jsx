@@ -4,7 +4,7 @@ import { Spinner, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "./CheckOut.css";
 import { useAuth } from "../../store/Auth";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function CheckOut() {
   const location = useLocation();
@@ -117,7 +117,7 @@ function CheckOut() {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-  
+
       // Prepare the order data
       const orderData = {
         ...data,
@@ -128,7 +128,7 @@ function CheckOut() {
         orderdProduct: id, // Order by product
         seller: product.createdBy, // id of that user who haas created the product
       };
-  
+
       const response = await fetch(
         `${import.meta.env.VITE_APP_API_BASE_URL}/orders/createOrder`,
         {
@@ -139,16 +139,16 @@ function CheckOut() {
           body: JSON.stringify(orderData),
         }
       );
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const result = await response.json();
-      alert("You have successfully ordered")
+      alert("You have successfully ordered");
       // reset()
       // Navigate to /account/my-orders after successful order
-    navigate('/account/my-orders');
+      navigate("/account/my-orders");
       console.log("Order created successfully:", result);
     } catch (error) {
       console.error("Error creating order:", error);
@@ -157,7 +157,7 @@ function CheckOut() {
       setLoading(false);
     }
   };
-  
+
   return (
     <>
       <div className="container-fluid bg-single-product py-5">
@@ -256,27 +256,32 @@ function CheckOut() {
               </fieldset>
 
               <Form.Group className="mb-3">
-  <Form.Label>Payment Method</Form.Label>
-  <Form.Control
-    as="select"
-    {...register("paymentMethods", {
-      required: "Payment method is required",
-    })}
-    isInvalid={!!errors.paymentMethods}
-    defaultValue="cod" // Set COD as the default value
-  >
-    <option value="credit_card" disabled>Credit Card</option>
-    <option value="debit_card" disabled>Debit Card</option>
-    <option value="net_banking" disabled>Net Banking</option>
-    <option value="cod">Cash on Delivery</option>
-  </Form.Control>
-  <Form.Control.Feedback type="invalid">
-    {errors.paymentMethods?.message}
-  </Form.Control.Feedback>
-</Form.Group>
+                <Form.Label>Payment Method</Form.Label>
+                <Form.Control
+                  as="select"
+                  {...register("paymentMethods", {
+                    required: "Payment method is required",
+                  })}
+                  isInvalid={!!errors.paymentMethods}
+                  defaultValue="cod" // Set COD as the default value
+                >
+                  <option value="credit_card" disabled>
+                    Credit Card
+                  </option>
+                  <option value="debit_card" disabled>
+                    Debit Card
+                  </option>
+                  <option value="net_banking" disabled>
+                    Net Banking
+                  </option>
+                  <option value="cod">Cash on Delivery</option>
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.paymentMethods?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-
-              <Button className="buy-btn border p-4 my-4 w-100"  type="submit">
+              <Button className="buy-btn border p-4 my-4 w-100 align-items-center d-flex" type="submit">
                 Place Order
               </Button>
             </Form>

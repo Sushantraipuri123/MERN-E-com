@@ -127,8 +127,32 @@ module.exports = {
             console.error("Error fetching order:", error);
             res.status(500).json({ message: 'Server error', error: error.message });
         }
-    }
+    },
     
+    // shiped order
+    shipOrder: async (req, res) => {
+        try {
+            const { orderId } = req.params; // Get orderId from the route parameters
+        
+            // Find the order by ID and update the status to "shipped"
+            const updatedOrder = await db.findByIdAndUpdate(
+              orderId,
+              { orderStatus:'shipped' },
+              { new: true } // Return the updated document
+            );
+        
+            if (!updatedOrder) {
+              return res.status(404).json({ message: 'Order not found' });
+            }
+        
+            res.status(200).json({
+              message: 'Order shipped successfully',
+              order: updatedOrder,
+            });
+          } catch (error) {
+            res.status(500).json({ message: 'Server error', error: error.message });
+          }
+    },
     
     
 

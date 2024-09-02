@@ -34,7 +34,7 @@ function Header() {
   const { isLoggedin } = useAuth();
 
   return (
-    <Navbar expand="lg" className={` px-5 custom-navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <Navbar expand="lg" className={`sticky-top px-5 custom-navbar ${isScrolled ? 'scrolled' : ''}`}>
       <Navbar.Brand as={Link} to='/' className='Urbanist ms-4'><strong>HYNA</strong></Navbar.Brand>
       <Navbar.Toggle 
         aria-controls="basic-navbar-nav"
