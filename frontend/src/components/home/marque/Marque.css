@@ -1,0 +1,49 @@
+.marquee-container {
+    width: 100%;                /* Full width of the container */
+    overflow: hidden;           /* Hide content that overflows the container */
+    background-color: #f6f6f6;  /* Optional: background color */
+    position: relative;
+    display: flex;
+    padding: 30px 0;
+    align-items: center;        /* Center the items vertically */
+    white-space: nowrap;        /* Prevent text from wrapping to the next line */
+  }
+  
+  .marquee-content {
+    display: flex;              /* Display list items in a row */
+    list-style-type: none;      /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    animation: marquee 30s linear infinite; /* Continuous animation */
+  }
+  
+  .marquee-li {
+    margin-right: 50px;         
+    display: inline-block;
+    color: #222222;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 300;      /* Keep the items in one line */
+  }
+
+  .marquee-li::before {
+    content: '★';               /* Add an asterisk before each item */
+    margin-right: 10px;         /* Space between asterisk and text */
+    color: #222222;             /* Match the color of the text */
+    font-size: 24px;            /* Match the font size of the text */
+  }
+  
+  
+  .marquee-container:hover .marquee-content {
+    animation-play-state: paused; /* Pause animation on hover */
+  }
+  
+  @keyframes marquee {
+    from {
+      transform: translateX(0);  /* Start at the initial position */
+    }
+    to {
+      transform: translateX(-50%); /* Move left by 50% of the container width */
+    }
+  }
+  

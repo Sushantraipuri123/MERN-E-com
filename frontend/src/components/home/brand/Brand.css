@@ -1,0 +1,6 @@
+.brand-col{
+    height: 56px;
+    width: auto;
+    overflow: hidden;
+    object-fit: contain;
+}

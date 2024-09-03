@@ -1,0 +1,26 @@
+.column-content {
+    position: relative; /* Ensures the heading can be positioned absolutely within the container */
+    overflow: hidden;  /* Hide any overflow to keep images and headings contained */
+  }
+  
+  .image-container {
+    position: relative; /* Ensures the heading is positioned relative to this container */
+  }
+  
+  .image-container img {
+    width: 100%; /* Make sure the image fills the column width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove bottom space */
+  }
+  
+  .image-heading {
+    position: absolute; /* Position the heading absolutely within the container */
+    top: 28px; /* Position the heading at the bottom of the image */
+    left: 10px; /* Add some spacing from the left edge */
+    right: 10px; /* Add some spacing from the right edge */
+    color: rgb(0, 0, 0); /* White text color for contrast */
+    text-align: center; /* Center-align the text */
+    padding: 10px; /* Add padding for spacing */
+    z-index: 1; /* Ensure the heading is above the image */
+  }
+  

@@ -28,12 +28,14 @@ import CheckOut from "./components/checkout/CheckOut";
 import SeahrchedProducts from "./components/searchbar/SeahrchedProducts";
 import OrderDetails from "./components/account/myOrders/OrderDetails";
 import RecivedOrdersDetails from "./components/account/recivedOrders/RecivedOrdersDetails";
+import ScrollToTop from "./utilities/ScrollToTop";
 
 function App() {
   const { isLoggedin } = useAuth();
 
   return (
     <Router>
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

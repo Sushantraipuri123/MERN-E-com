@@ -1,0 +1,11 @@
+.rotated-text {
+    transform: rotate(-180deg);
+    writing-mode: vertical-lr;
+    transform-origin: center center;
+    line-height: 1;
+    opacity: .5;
+    color: #ffffff;
+     font-size: 150px !important;
+  }
+
+  

@@ -1,0 +1,130 @@
+.footer-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-container {
+    background-color: #f6f6f6;
+    /* margin-top: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px; */
+}
+
+.footer-icon {
+    font-size: 30px;
+    transition: transform 0.6s ease-in-out; /* Updated transition duration */
+}
+
+.footer-box:hover .footer-icon {
+    transform: rotateY(360deg); /* Rotate 360 degrees on the X-axis */
+}
+
+
+
+.footer-title {
+    margin-top: 20px;
+}
+
+.footer-text {
+    color: #676767;
+}
+
+.footer-para-area {
+    font-size: 15px;
+    font-weight: 500;
+    color: #676767;
+}
+
+.footer-blogs {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footer-content {
+    margin-right: 100px;
+}
+
+.footer-insta-first img{
+    height: 80px;
+    margin-right: none !important;
+}
+
+.footer-insta-second img{
+    height: 80px;
+    margin-right: none !important;
+    margin-top: 0px !important;
+}
+
+.footer-insta img{
+    cursor: pointer;
+    margin-top: 40px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+@media (max-width: 768px) {
+    .footer-blogs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer-content {
+        width: 100%;
+        text-align: center;
+        margin-right: 0 !important;
+    }
+
+    .footer-content h5 {
+        font-size: 18px;
+    }
+
+    .footer-para-area {
+        margin-top: 10px;
+    }
+
+    .footer-para-area p {
+        font-size: 14px;
+    }
+
+    .footer-insta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer-insta-first,
+    .footer-insta-second {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .footer-insta-first img,
+    .footer-insta-second img {
+        width: 25%;
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-content h5 {
+        font-size: 16px;
+    }
+
+    .footer-para-area p {
+        font-size: 12px;
+    }
+
+    .footer-insta-first img,
+    .footer-insta-second img {
+        width: 35%;
+    }
+}

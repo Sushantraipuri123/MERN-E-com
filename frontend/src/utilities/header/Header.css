@@ -39,3 +39,12 @@
     border: none;
 }
 
+@media (max-width: 991px) {
+    
+.navbar-collapse {
+    background-color: #fff;
+    border-radius: 15px;
+    margin-top: 5px;
+}
+  }
+  

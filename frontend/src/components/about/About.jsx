@@ -33,7 +33,7 @@ const About = () => {
        <div className="container mt-4 mb-4">
           <div className="row justify-content-center">
             <div className="col-lg-4 col-md-6 col-sm-12 mt-3">
-              <div className="card h-100 bg-primary mb-3">
+              <div className="card h-100 bg- mb-3">
                 <div className="card-body">
                   <div className="mb-4 mt-3 text-center p-2  circle" style={{fontSize:"36px"}}>
                   <GiMicroscopeLens  />
@@ -44,7 +44,7 @@ const About = () => {
               </div>
             </div>
             <div className="col-lg-4 col-md-6 col-sm-12 mt-3">
-              <div className="card h-100  bg-success mb-3">
+              <div className="card h-100  bg- mb-3">
                 <div className="card-body h-100">
                 <div className="mb-4 mt-3 text-center circle  p-2" style={{fontSize:"36px"}}>
                   <GiFlyingFlag />
@@ -55,7 +55,7 @@ const About = () => {
                   </div>
                   </div>
                   <div className="col-lg-4 col-md-6 col-sm-12 mt-3">
-              <div className="card h-100  bg-success mb-3">
+              <div className="card h-100  bg- mb-3">
                 <div className="card-body h-100">
                 <div className="mb-4 mt-3 text-center p-2 circle" style={{fontSize:"36px"}}>
                   <GiLifeSupport />
