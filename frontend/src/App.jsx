@@ -29,6 +29,11 @@ import SeahrchedProducts from "./components/searchbar/SeahrchedProducts";
 import OrderDetails from "./components/account/myOrders/OrderDetails";
 import RecivedOrdersDetails from "./components/account/recivedOrders/RecivedOrdersDetails";
 import ScrollToTop from "./utilities/ScrollToTop";
+import Faq from "./components/pages/Faq";
+import Tc from "./components/pages/Tc";
+import PrivacyPolicy from "./components/pages/PrivacyPolicy";
+import Refund from "./components/pages/Refund.";
+import Contact from "./components/contact/Contact";
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -92,7 +97,13 @@ function App() {
           {/* order details routes  */}
           <Route path="/my-orders/:id" element={<OrderDetails />} />
           <Route path="/recived-orders/:id" element={<RecivedOrdersDetails/>} />
-          {/* cart routes  */}
+         {/* Pages routes */}
+         <Route path="faq" element={<Faq/>} />
+         <Route path="terms" element={<Tc/>} />
+         <Route path="privacy" element={<PrivacyPolicy/>} />
+         <Route path="refund" element={<Refund/>} />
+
+         <Route path="contact" element={<Contact/>} />
 
         </Route>
       </Routes>

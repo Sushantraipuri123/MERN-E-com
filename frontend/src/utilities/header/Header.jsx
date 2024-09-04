@@ -45,13 +45,15 @@ function Header() {
           <Nav.Link as={Link} to='/' className='Urbanist' onClick={handleLinkClick}>Home</Nav.Link>
           <Nav.Link as={Link} to='/about' className='Urbanist' onClick={handleLinkClick}>About us</Nav.Link>
           <Nav.Link as={Link} to='/products' className='Urbanist' onClick={handleLinkClick}>Products</Nav.Link>
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1" className='Urbanist' onClick={handleLinkClick}>Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2" className='Urbanist' onClick={handleLinkClick}>Another action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3" className='Urbanist' onClick={handleLinkClick}>Something</NavDropdown.Item>
+          <NavDropdown title="Pages" id="basic-nav-dropdown">
+            <NavDropdown.Item as={Link} to='/faq' className='Urbanist' onClick={handleLinkClick}>FAQ'S</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/terms' className='Urbanist' onClick={handleLinkClick}>Terms & Conditions</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/privacy' className='Urbanist' onClick={handleLinkClick}>Privacy Policy</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4" className='Urbanist' onClick={handleLinkClick}>Separated link</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/refund' className='Urbanist' onClick={handleLinkClick}>Refund Policy</NavDropdown.Item>
           </NavDropdown>
+          <Nav.Link as={Link} to='/contact' className='Urbanist' onClick={handleLinkClick}>Contact</Nav.Link>
+
         </Nav>
         <Nav className="ml-auto align-items-start">
         <Nav.Link  className='Urbanist nav-icon' >

@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 function SingleProduct({ item }) {
   const { id } = useParams();
   const { addToCart } = useAuth();
+  const { isLoggedin } = useAuth();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -63,24 +64,36 @@ function SingleProduct({ item }) {
   };
 
   const handleAddToCart = (product) => {
-    const cartItem = {
-      id: product._id, // Product ID
-      size: selectedSize, // Selected size
-      quantity: count, // Selected quantity
-    };
-    
-    addToCart(cartItem);
-    navigate('/cart')
+    if (isLoggedin) {
+      const cartItem = {
+        id: product._id, // Product ID
+        size: selectedSize, // Selected size
+        quantity: count, // Selected quantity
+      };
+      
+      addToCart(cartItem);
+      navigate('/cart');
+    } else {
+      alert('Please log in to save the product');
+      navigate('/account/login');
+    }
   };
+  
   // handle buy now
 
   const navigate = useNavigate();
 
   const handleBuyNow = () => {
-    navigate(`/check-out/${product._id}`, {
-      state: { selectedSize, count },
-    });
+    if (isLoggedin) {
+      navigate(`/check-out/${product._id}`, {
+        state: { selectedSize, count },
+      });
+    } else {
+      alert('Please log in to proceed to checkout');
+      navigate('/account/login');
+    }
   };
+  
   
   //   current url
   const currentUrl = window.location.href;

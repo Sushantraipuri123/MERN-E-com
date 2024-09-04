@@ -74,7 +74,7 @@ function Footer(){
                         <div className='footer-para-area mt-4'>
                             <Link to="/account" style={{color:'#636363'}}><p>My Account</p></Link>
                             <Link to="/account/my-orders" style={{color:'#636363'}}><p>Order History</p></Link>
-                            <Link to="/return" style={{color:'#636363'}}><p>Return Policy</p></Link>
+                            <Link to="/refund" style={{color:'#636363'}}><p>Return Policy</p></Link>
                         </div>
                     </div>
                     <div className='footer-content'>
@@ -82,15 +82,15 @@ function Footer(){
                         <div className='footer-para-area mt-4'>
                         <Link to="/terms" style={{color:'#636363'}}><p>Terms & condition</p></Link>
                             <Link to="/about" style={{color:'#636363'}}><p>About us</p></Link>
-                            <Link to="/location" style={{color:'#636363'}}><p>Our location</p></Link>
+                            <Link to="/contact" style={{color:'#636363'}}><p>Our location</p></Link>
                         </div>
                     </div>
                     <div className='footer-content'>
                         <h5>Information</h5>
                         <div className='footer-para-area mt-4'>
                         <Link to="/contact" style={{color:'#636363'}}><p>Keep in touch</p></Link>
-                        <Link to="/terms" style={{color:'#636363'}}><p>Privacy policy</p></Link>
-                        <Link to="/return" style={{color:'#636363'}}><p>Refund policy</p></Link>
+                        <Link to="/privacy" style={{color:'#636363'}}><p>Privacy policy</p></Link>
+                        <Link to="/refund" style={{color:'#636363'}}><p>Refund policy</p></Link>
                         </div>
                     </div>
                     <div className='footer-content' style={{marginRight:'20px'}}>
@@ -125,8 +125,8 @@ function Footer(){
                 </div>
             </div>
         </div>
-
     </section>
+            <p className='text-center text-muted mt-3'>&copy; 2024 Sushant Raipuri. All rights reserved. </p>
     </>)
 };
 
