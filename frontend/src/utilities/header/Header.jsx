@@ -59,7 +59,7 @@ function Header() {
         </Nav.Link>
           <Nav.Link as={Link} to='/account' className='Urbanist nav-icon ' onClick={handleLinkClick}> {isLoggedin ?   <FaUserCheck /> : <FaUserPlus />} </Nav.Link>
          
-          <Nav.Link as={Link} to="cart" className='Urbanist' onClick={handleLinkClick}>Cart</Nav.Link>
+          <Nav.Link as={Link} to="cart" className='Urbanist' onClick={handleLinkClick}>Saved</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       

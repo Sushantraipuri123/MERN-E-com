@@ -9,9 +9,9 @@ import AddReview from "../AddReview";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { useAuth } from "../../../store/Auth";
 import Spinner from "react-bootstrap/Spinner"; // Assuming you're using React Bootstrap for the spinner
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";    
 
-function SingleProduct() {
+function SingleProduct({ item }) {
   const { id } = useParams();
   const { addToCart } = useAuth();
   const [product, setProduct] = useState(null);
@@ -28,7 +28,6 @@ function SingleProduct() {
   const imgRef = useRef(null);
 
   
-
 
   const handleMouseMove = (e) => {
     if (containerRef.current && imgRef.current) {
@@ -63,9 +62,15 @@ function SingleProduct() {
     setSelectedSize(size);
   };
 
-  const handleAddToCart = () => {
-    addToCart(product);
-    alert("one item added to cart"); // Add product to cart
+  const handleAddToCart = (product) => {
+    const cartItem = {
+      id: product._id, // Product ID
+      size: selectedSize, // Selected size
+      quantity: count, // Selected quantity
+    };
+    
+    addToCart(cartItem);
+    navigate('/cart')
   };
   // handle buy now
 
@@ -390,8 +395,8 @@ function SingleProduct() {
                   </button>
                 </div>
               </span>
-              <button className="cart-btn border p-4" onClick={handleAddToCart}>
-                Add to cart
+              <button className="cart-btn border p-4"  onClick={() => handleAddToCart(product)}>
+                Save Product
               </button>
               {/* <Link
   to={{

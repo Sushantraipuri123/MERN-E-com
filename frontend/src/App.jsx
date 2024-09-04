@@ -40,7 +40,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-
+          {/* account nested routes */}
           <Route path="/account/*" element={<Account />}>
             <Route
               index
@@ -92,6 +92,8 @@ function App() {
           {/* order details routes  */}
           <Route path="/my-orders/:id" element={<OrderDetails />} />
           <Route path="/recived-orders/:id" element={<RecivedOrdersDetails/>} />
+          {/* cart routes  */}
+
         </Route>
       </Routes>
     </Router>
